@@ -779,7 +779,7 @@ envmigrate() {
     if [[ "${value}" =~ "infura.io" ]]; then
        __el_infura=1
     fi
-    if [[ "${value}" =~ "http://rpcdaemon:8545" ]]; then
+    if [[ "${value}" =~ "http://execution:8545" ]]; then
        EL_NODE="http://execution:8551"
        set_value_in_env
        __el_adjusted=1
@@ -1201,7 +1201,7 @@ prune-nethermind() {
     if [ $exitstatus -ne 0 ]; then
         echo "Unable to start prune, error code ${exitstatus}. This is likely a bug."
         echo "An attempt to run it returned this: ${prune_result}"
-        echo 'The command attempted was: docker-compose run --rm set-prune-marker "curl -s --data {\\\"method\\\":\\\"admin_prune\\\",\\\"params\\\":[],\\\"id\\\":1,\\\"jsonrpc\\\":\\\"2.0\\\"} -H Content-Type:\ application/json http://rpcdaemon:8545"'
+        echo 'The command attempted was: docker-compose run --rm set-prune-marker "curl -s --data {\\\"method\\\":\\\"admin_prune\\\",\\\"params\\\":[],\\\"id\\\":1,\\\"jsonrpc\\\":\\\"2.0\\\"} -H Content-Type:\ application/json http://execution:8545"'
         exit ${exitstatus}
     fi
     echo "Nethermind returns ${prune_result}"
